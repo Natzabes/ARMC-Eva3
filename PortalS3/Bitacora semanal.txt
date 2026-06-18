@@ -9,3 +9,15 @@ Se realizaron pruebas mediante Swagger y Postman verificando la generación corr
 Dificultades iniciales con la configuración de las credenciales AWS y variables de entorno.
 Errores al generar URLs firmadas debido a configuraciones incorrectas en el archivo .env.
 Problemas ocasionados por credenciales temporales expiradas de AWS Academy.
+
+SPRINT 2 - 16-06-2026
+
+Se completaron los endpoints restantes del backend para listar y eliminar archivos almacenados en Amazon S3.
+Se implementó el frontend utilizando React y Vite, conectándolo con la API desarrollada en FastAPI.
+Se creó la visualización de archivos almacenados en el bucket y la funcionalidad para eliminarlos desde la interfaz web.
+Se realizaron pruebas integrales verificando la comunicación Frontend → Backend → Amazon S3.
+
+Errores de CORS al intentar subir archivos directamente desde React hacia Amazon S3.
+Problemas de configuración del entorno al mover el proyecto entre distintos computadores.
+Fallos relacionados con credenciales AWS expiradas y rutas incorrectas del entorno virtual.
+Errores iniciales de React debido a exportaciones faltantes en App.jsx.
