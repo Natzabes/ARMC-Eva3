@@ -1,0 +1,11 @@
+SPRINT 1 - 13-06-2026
+
+Se creó la estructura inicial del proyecto utilizando FastAPI para el backend.
+Se configuró el entorno virtual de Python y las dependencias necesarias (FastAPI, Uvicorn, boto3, python-dotenv y Pydantic).
+Se creó y configuró el bucket S3 asignado a la pareja junto con las credenciales IAM correspondientes.
+Se implementó el endpoint POST /api/upload/presigned-url para generar URLs firmadas de carga hacia Amazon S3.
+Se realizaron pruebas mediante Swagger y Postman verificando la generación correcta de URLs y la subida de archivos PDF y DOCX.
+
+Dificultades iniciales con la configuración de las credenciales AWS y variables de entorno.
+Errores al generar URLs firmadas debido a configuraciones incorrectas en el archivo .env.
+Problemas ocasionados por credenciales temporales expiradas de AWS Academy.
