@@ -21,3 +21,16 @@ Errores de CORS al intentar subir archivos directamente desde React hacia Amazon
 Problemas de configuración del entorno al mover el proyecto entre distintos computadores.
 Fallos relacionados con credenciales AWS expiradas y rutas incorrectas del entorno virtual.
 Errores iniciales de React debido a exportaciones faltantes en App.jsx.
+
+SPRINT 3 - 24-06-2026
+
+Se implementó la feature adicional asignada a la pareja P-01, incorporando una vista previa de archivos PDF directamente desde la interfaz web.
+Se añadieron enlaces para abrir y descargar documentos almacenados en Amazon S3 mediante URLs firmadas generadas por el backend.
+Se mejoró la experiencia de usuario incorporando mensajes de estado durante la subida de archivos y validaciones más claras para errores de tamaño o tipo de archivo no permitido.
+Se actualizó la visualización de archivos mostrando nombre, tamaño y fecha de modificación, cumpliendo los requisitos funcionales establecidos.
+Se realizaron pruebas funcionales completas verificando la subida, listado, apertura, vista previa y eliminación de archivos PDF y DOCX.
+
+Problemas de compatibilidad entre las librerías react-pdf y pdfjs-dist al intentar generar miniaturas reales de la primera página de los archivos PDF.
+Errores relacionados con CORS y carga de workers PDF desde CDN externas durante las pruebas de la funcionalidad de vista previa.
+Necesidad de simplificar la implementación de la feature extra para garantizar estabilidad y compatibilidad entre distintos entornos de desarrollo.
+Ajustes adicionales en el frontend para mejorar la visualización de archivos y el manejo de errores reportados por el backend.

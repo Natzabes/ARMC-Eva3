@@ -75,6 +75,11 @@ def list_files():
 
         for obj in response.get("Contents", []):
 
+            file_key = obj["Key"]
+
+            if file_key == "uploads/":
+                continue
+            
             url = s3_client.generate_presigned_url(
                 "get_object",
                 Params={

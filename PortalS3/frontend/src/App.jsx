@@ -66,10 +66,19 @@ function App() {
     } catch (error) {
   
       console.error(error);
-  
-      setMessage(
-        "Error al subir archivo o archivo no permitido."
-      );
+
+      if (error.response) {
+
+        setMessage(
+          error.response.data.detail
+        );
+    
+      } else {
+    
+        setMessage(
+          "Error de conexión con el servidor."
+        );
+      }
     }
   };
 
@@ -137,7 +146,15 @@ function App() {
 
               <li key={file.name}>
 
-                {file.name}
+                <strong>{file.name}</strong>
+
+                {" | "}
+
+                {(file.size / 1024).toFixed(2)} KB
+
+                {" | "}
+
+                {new Date(file.lastModified).toLocaleString()}
 
                 {" "}
 
@@ -187,10 +204,19 @@ function App() {
 
               <h2>Vista previa PDF</h2>
 
+              <button
+                onClick={() => setSelectedPdf(null)}
+              >
+                Cerrar vista previa
+              </button>
+
+              <br />
+              <br />
+
               <iframe
                 src={`${selectedPdf}#page=1`}
-                width="600"
-                height="800"
+                width="800"
+                height="600"
                 title="PDF Preview"
               />
 
