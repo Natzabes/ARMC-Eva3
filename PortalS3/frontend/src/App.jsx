@@ -6,6 +6,7 @@ function App() {
   const [files, setFiles] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
   const [message, setMessage] = useState("");
+  const [selectedPdf, setSelectedPdf] = useState(null);
 
   const loadFiles = () => {
     api.get("/api/files")
@@ -23,9 +24,13 @@ function App() {
       alert("Seleccione un archivo");
       return;
     }
-  
+        
     try {
   
+      setMessage(
+        "Subiendo archivo..."
+      );
+
       const response = await api.post(
         "/api/upload/presigned-url",
         {
@@ -33,6 +38,7 @@ function App() {
           fileType: selectedFile.type,
           fileSize: selectedFile.size
         }
+
       );
   
       const presignedUrl =
@@ -125,20 +131,72 @@ function App() {
       <h2>Archivos</h2>
 
       <ul>
-        {files.map((file) => (
-          <li key={file.name}>
 
-            {file.name}
+          {
+            files.map(file => (
 
-            <button
-              onClick={() => deleteFile(file.name)}
-            >
-              Eliminar
-            </button>
+              <li key={file.name}>
 
-          </li>
-        ))}
+                {file.name}
+
+                {" "}
+
+                <a
+                  href={file.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Abrir
+                </a>
+
+                {" "}
+
+                {
+                  file.name.toLowerCase().endsWith(".pdf") && (
+                    <button
+                      onClick={() =>
+                        setSelectedPdf(file.url)
+                      }
+                    >
+                      Preview
+                    </button>
+                  )
+                }
+
+                {" "}
+
+                <button
+                  onClick={() =>
+                    deleteFile(file.name)
+                  }
+                >
+                  Eliminar
+                </button>
+
+              </li>
+
+            ))
+          }
+
       </ul>
+
+        {
+          selectedPdf && (
+
+            <div>
+
+              <h2>Vista previa PDF</h2>
+
+              <iframe
+                src={`${selectedPdf}#page=1`}
+                width="600"
+                height="800"
+                title="PDF Preview"
+              />
+
+            </div>
+          )
+        }
 
     </div>
   );

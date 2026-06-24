@@ -75,10 +75,20 @@ def list_files():
 
         for obj in response.get("Contents", []):
 
+            url = s3_client.generate_presigned_url(
+                "get_object",
+                Params={
+                    "Bucket": BUCKET_NAME,
+                    "Key": obj["Key"]
+                },
+                ExpiresIn=3600
+            )
+
             files.append({
                 "name": obj["Key"].replace("uploads/", ""),
                 "size": obj["Size"],
-                "lastModified": obj["LastModified"]
+                "lastModified": obj["LastModified"],
+                "url": url
             })
 
         return files
