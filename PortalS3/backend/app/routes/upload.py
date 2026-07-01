@@ -3,6 +3,10 @@ import re
 from app.models.upload_request import UploadRequest
 from app.services.s3_service import s3_client
 from botocore.exceptions import ClientError
+from app.services.dynamodb_service import (
+    guardar_archivo,
+    eliminar_archivo
+)
 from app.config import (
     BUCKET_NAME,
     MAX_FILE_SIZE,
@@ -55,6 +59,8 @@ def generate_presigned_url(data: UploadRequest):
         f"{AWS_REGION}.amazonaws.com/{key}"
     )
 
+    guardar_archivo(safe_name)
+    
     return {
         "presignedUrl": presigned_url,
         "key": key,
@@ -115,6 +121,8 @@ def delete_file(key: str):
             Key=f"uploads/{key}"
         )
 
+        eliminar_archivo(key)
+        
         return {
             "message": f"{key} eliminado correctamente"
         }

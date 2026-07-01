@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "./services/api";
+import "./App.css";
 
 function App() {
 
@@ -115,7 +116,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <h1>ArchivaCloud P-01</h1>
 
       <input
@@ -133,74 +134,103 @@ function App() {
         Subir archivo
       </button>
 
-      <p>{message}</p>
+      <p className="message">
+          {message}
+      </p>
 
       <hr />
 
       <h2>Archivos</h2>
 
-      <ul>
+      <table>
 
-          {
-            files.map(file => (
+      <thead>
 
-              <li key={file.name}>
+      <tr>
+          <th>Nombre</th>
+          <th>Tamaño</th>
+          <th>Fecha</th>
+          <th>Acciones</th>
+      </tr>
 
-                <strong>{file.name}</strong>
+      </thead>
 
-                {" | "}
+      <tbody>
 
-                {(file.size / 1024).toFixed(2)} KB
+      {
 
-                {" | "}
+      files.map(file => (
 
-                {new Date(file.lastModified).toLocaleString()}
+      <tr key={file.name}>
 
-                {" "}
+      <td>{file.name}</td>
 
-                <a
-                  href={file.url}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Abrir
-                </a>
+      <td>
+      {(file.size/1024).toFixed(2)} KB
+      </td>
 
-                {" "}
+      <td>
+      {new Date(file.lastModified).toLocaleString()}
+      </td>
 
-                {
-                  file.name.toLowerCase().endsWith(".pdf") && (
-                    <button
-                      onClick={() =>
-                        setSelectedPdf(file.url)
-                      }
-                    >
-                      Preview
-                    </button>
-                  )
-                }
+      <td>
 
-                {" "}
+      <a
+      href={file.url}
+      target="_blank"
+      rel="noreferrer"
+      >
+      Abrir
+      </a>
 
-                <button
-                  onClick={() =>
-                    deleteFile(file.name)
-                  }
-                >
-                  Eliminar
-                </button>
+      {" "}
 
-              </li>
+      {
 
-            ))
-          }
+      file.name
+      .toLowerCase()
+      .endsWith(".pdf") && (
 
-      </ul>
+      <button
+      onClick={() =>
+      setSelectedPdf(file.url)
+      }
+      >
+
+      Preview
+
+      </button>
+
+      )
+
+      }
+
+      <button
+      onClick={() =>
+      deleteFile(file.name)
+      }
+      >
+
+      Eliminar
+
+      </button>
+
+      </td>
+
+      </tr>
+
+      ))
+
+      }
+
+      </tbody>
+
+      </table>
 
         {
           selectedPdf && (
 
-            <div>
+            <div className="preview">
 
               <h2>Vista previa PDF</h2>
 
