@@ -1,0 +1,80 @@
+En carpeta backend:
+
+Crear entorno virtual: python -m venv venv
+
+Activar entorno: venv\Scripts\activate
+
+Instalar dependencias: pip install -r requirements.txt
+
+Iniciar Swagger:
+uvicorn app.main:app --reload
+
+Abrir enlace web.
+
+Para ir a Swagger:
+en url agregar /docs
+
+---------------------------------------------------
+PRUEBAS ONLY BACKEND (IGNORAR ESTO EN PRODUCTO FINAL)
+
+Descargar POSTMAN (login sin cuenta)
+
+(Genera url + data archivo)
+
+Método: POST
+URL: http://127.0.0.1:8000/api/upload/presigned-url
+
+Body -> raw -> JSON:
+
+{
+    "fileName": "prueba.pdf",
+    "fileType": "application/pdf",
+    "fileSize": 500000
+}
+
+---
+Send
+------------
+
+(Sube archivo)
+
+Método: PUT
+URL: [URL kilométrica de lo anterior]
+
+Body -> binary -> Select File -> [prueba.pdf] (pdf,docx,etc)
+
+En Headers: 
+KEY		VALUE
+Content-Type	application/pdf
+
+---
+Send
+------------
+(Ver archivos)
+
+Método: GET
+URL: http://127.0.0.1:8000/api/files
+
+---
+send
+------------
+(Borra archivo)
+
+Método: DELETE
+URL: http://127.0.0.1:8000/api/files/prueba.pdf
+
+-----------
+POSIBLES PROBLEMAS:
+
+ExpiredToken
+
+Las credenciales de AWS Academy expiran. Recordar actualizar por cada inicio.
+
+Solución:
+
+AWS Academy
+→ AWS Details
+→ Obtener nuevas credenciales
+→ Actualizar .env
+→ Reiniciar FastAPI
+

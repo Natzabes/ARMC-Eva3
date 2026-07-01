@@ -1,4 +1,5 @@
 import boto3
+from datetime import datetime
 
 from app.config import (
     AWS_ACCESS_KEY_ID,
@@ -18,20 +19,14 @@ session = boto3.Session(
 table = session.resource("dynamodb").Table(DYNAMODB_TABLE)
 
 
-def guardar_archivo(nombre):
+def guardar_archivo(nombre, tipo, tamano):
 
     table.put_item(
         Item={
-            "id_tabla": nombre,
-            "nombre_proyecto": nombre,
-            "descripcion": "Archivo subido a ArchivaCloud"
-        }
-    )
-
-def eliminar_archivo(nombre):
-    table.delete_item(
-        Key={
-            "id_tabla": nombre,
-            "Nombre_proyecto": nombre
+            "archivo": nombre,
+            "tipo": tipo,
+            "tamano": tamano,
+            "fecha_subida": datetime.now().isoformat(),
+            "descripcion": "Archivo almacenado en Amazon S3"
         }
     )

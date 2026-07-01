@@ -2,7 +2,7 @@ SPRINT 1 - 13-06-2026
 
 Se creó la estructura inicial del proyecto utilizando FastAPI para el backend.
 Se configuró el entorno virtual de Python y las dependencias necesarias (FastAPI, Uvicorn, boto3, python-dotenv y Pydantic).
-Se creó y configuró el bucket S3 asignado a la pareja junto con las credenciales IAM correspondientes.
+Se creó y configuró el bucket S3 asignado junto con las credenciales IAM correspondientes.
 Se implementó el endpoint POST /api/upload/presigned-url para generar URLs firmadas de carga hacia Amazon S3.
 Se realizaron pruebas mediante Swagger y Postman verificando la generación correcta de URLs y la subida de archivos PDF y DOCX.
 
@@ -34,3 +34,11 @@ Problemas de compatibilidad entre las librerías react-pdf y pdfjs-dist al inten
 Errores relacionados con CORS y carga de workers PDF desde CDN externas durante las pruebas de la funcionalidad de vista previa.
 Necesidad de simplificar la implementación de la feature extra para garantizar estabilidad y compatibilidad entre distintos entornos de desarrollo.
 Ajustes adicionales en el frontend para mejorar la visualización de archivos y el manejo de errores reportados por el backend.
+
+SPRINT 4 - 01-07-2026
+Se mejoró la interfaz gráfica de la aplicación
+Se integró Amazon DynamoDB para registrar la información de los archivos subidos, almacenando nombre, tipo, tamaño y fecha de carga como metadatos complementarios al almacenamiento realizado en Amazon S3.
+Se realizaron pruebas funcionales verificando la correcta interacción entre React, FastAPI, Amazon S3 y DynamoDB, comprobando la subida, visualización, apertura y eliminación de archivos.
+
+Errores iniciales durante la integración con DynamoDB relacionados con la estructura de la tabla y la adaptación de los atributos del ejemplo proporcionado a las necesidades reales del proyecto.
+Problemas menores de sincronización y depuración entre el frontend y los servicios de AWS que fueron corregidos durante las pruebas.

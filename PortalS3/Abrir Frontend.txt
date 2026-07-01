@@ -1,5 +1,0 @@
-En carpeta frontend (cmd) (tener node js instalado)
-
-npm install
-
-npm run dev
